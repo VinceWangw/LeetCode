@@ -1,4 +1,4 @@
-package day2;
+package day2.验证回文串;
 
 /**
  * 类名: Solution
