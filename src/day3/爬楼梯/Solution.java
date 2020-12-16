@@ -1,4 +1,4 @@
-package Day3.爬楼梯;
+package day3.爬楼梯;
 
 /**
  * 类名: Solution

@@ -1,4 +1,4 @@
-package Day3.最大子序和;
+package day3.最大子序和;
 
 /**
  * 类名: Solution

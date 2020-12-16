@@ -1,4 +1,4 @@
-package Day3.打家劫舍;
+package day3.打家劫舍;
 
 /**
  * 类名: Solution

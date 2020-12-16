@@ -1,4 +1,4 @@
-package Day3.买卖股票的最佳时机;
+package day3.买卖股票的最佳时机;
 
 /**
  * 类名: Solution
