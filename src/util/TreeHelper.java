@@ -1,5 +1,4 @@
-
-package day2;
+package util;
 
 public class TreeHelper{
     public static int getTreeDepth(TreeNode root) {

@@ -24,7 +24,7 @@ import java.util.Arrays;
 class Solution {
     public boolean increasingTriplet(int[] nums) {
 
-        int dp[] = new int[nums.length];
+        int[] dp = new int[nums.length];
         Arrays.fill(dp, 1);
 
         for (int i = 0; i < nums.length; i++) {
@@ -37,11 +37,6 @@ class Solution {
                 }
             }
         }
-
-        for (int num : dp) {
-            System.out.print(num + ", ");
-        }
-
         return false;
     }
 
@@ -67,19 +62,20 @@ class Solution2 {
         int mid = Integer.MAX_VALUE;
 
         for (int num : nums) {
-            if (num > mid) {
-                return true;
-            } else if (num < small) {
+            if (num <= small) {
                 small = num;
             } else if (num <= mid) {
                 mid = num;
+            } else {
+                return true;
             }
         }
         return false;
     }
 
     public static void main(String[] args) {
-        int[] nums = new int[]{1,1,1,1,1,1,1};
+        int[] nums = new int[]{1,1,-2,6};
+        System.out.println(new Solution().increasingTriplet(nums));
         System.out.println(new Solution2().increasingTriplet(nums));
     }
 }

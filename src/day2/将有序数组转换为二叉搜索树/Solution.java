@@ -1,7 +1,7 @@
 package day2.将有序数组转换为二叉搜索树;
 
-import day2.TreeHelper;
-import day2.TreeNode;
+import util.TreeHelper;
+import util.TreeNode;
 
 /**
  * 类名: Solution

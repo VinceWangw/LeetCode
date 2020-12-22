@@ -1,4 +1,4 @@
-package day2;
+package util;
 
 /**
  * 类名: Listnode

@@ -1,7 +1,7 @@
 package day2.反转链表;
 
-import day2.ListHelper;
-import day2.ListNode;
+import util.ListHelper;
+import util.ListNode;
 
 /**
  * 类名: Solution

@@ -1,7 +1,7 @@
 package day2.删除链表的倒数第N个节点;
 
-import day2.ListHelper;
-import day2.ListNode;
+import util.ListHelper;
+import util.ListNode;
 /**
  * 类名: Solution
  * 描述: TODO

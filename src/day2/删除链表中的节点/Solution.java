@@ -1,6 +1,6 @@
 package day2.删除链表中的节点;
 
-import day2.ListNode;
+import util.ListNode;
 
 /**
  * 类名: Solution
