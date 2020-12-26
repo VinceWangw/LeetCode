@@ -26,36 +26,45 @@ class Node {
 
 class Solution {
     public Node connect(Node root) {
+        if (root == null) {
+            return root;
+        }
 
-        if (root == null) return null;
-        Queue<Node> queue = new LinkedList<>();
-        int n = 0;
+        // 初始化队列同时将第一层节点加入队列中，即根节点
+        Queue<Node> queue = new LinkedList<Node>();
+        queue.add(root);
 
-        queue.offer(root);
-        n ++;
+        // 外层的 while 循环迭代的是层数
+        while (!queue.isEmpty()) {
 
-        while (!queue.isEmpty()){
+            // 记录当前队列大小
+            int size = queue.size();
 
-            Node node = queue.poll();
-            n --;
+            // 遍历这一层的所有节点
+            for (int i = 0; i < size; i++) {
 
-            if (n == 0){
-                node.next = null;
-            }else {
-                node.next = queue.peek();
-            }
-            if (node.left != null){
-                queue.offer(node.left);
-                n ++;
-            }
-            if (node.right != null){
-                queue.offer(node.right);
-                n ++;
+                // 从队首取出元素
+                Node node = queue.poll();
+
+                // 连接
+                if (i < size - 1) {
+                    node.next = queue.peek();
+                }
+
+                // 拓展下一层节点
+                if (node.left != null) {
+                    queue.add(node.left);
+                }
+                if (node.right != null) {
+                    queue.add(node.right);
+                }
             }
         }
 
+        // 返回根节点
         return root;
     }
+
     public Node connect2(Node root) {
         if (root == null) return null;
         Node left = root.left;

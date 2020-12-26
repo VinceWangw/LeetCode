@@ -49,20 +49,15 @@ class Solution {
     public boolean canJump2(int[] nums) {
 
         int n = nums.length;
-        if (n == 1) return true;
-        int i ;
-        for (i = 0; i < n; ) {
-            if (nums[i] > 0){
-                i += nums[i];
-                if (i >= n){
-                    return true;
-                }
-            }
-            else {
-                return false;
-            }
+
+        //k : 当前位置能跳到的最远距离
+        int k = 0;
+        for (int i = 0; i < n; i++)
+        {
+            if (i > k) return false;
+            k = Math.max(k, i + nums[i]);
         }
-        return i >= n;
+        return true;
     }
 
     public static void main(String[] args) {
