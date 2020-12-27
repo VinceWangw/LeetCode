@@ -13,11 +13,18 @@ package day13.柱状图中最大的矩形;
  * 输出: 10
  *
  */
+
+import java.util.Deque;
+import java.util.LinkedList;
+
+/**
+ * 解释：https://blog.csdn.net/Zolewit/article/details/88863970
+ */
 class Solution {
     public int largestRectangleArea(int[] heights) {
 
         int n = heights.length;
-        //curMax[i] 表示 第i根柱子向两边延伸的最大面积
+        //curMax[i] 表示 能覆盖i根柱子的最大矩形面积
         int[] curMax = new int[n];
         int max = 0;
         for (int i = 0; i < n; i++) {
@@ -35,8 +42,27 @@ class Solution {
         return max;
     }
 
+    public int largestRectangleArea2(int[] heights) {
+
+        int[] tmp = new int[heights.length + 2];
+        System.arraycopy(heights, 0, tmp, 1, heights.length);
+        Deque<Integer> stack = new LinkedList<>();
+        int max = 0;
+
+        for (int i = 0; i < tmp.length; i++) {
+            while (!stack.isEmpty() && tmp[i] < tmp[stack.peek()]){
+                int top = stack.pop();
+                max = Math.max(max, tmp[top] * (i - stack.peek() - 1));
+            }
+            stack.push(i);
+
+        }
+        return max;
+    }
+
     public static void main(String[] args) {
         int[] nums = new int[]{2,1,5,6,2,3};
         System.out.println(new Solution().largestRectangleArea(nums));
+        System.out.println(new Solution().largestRectangleArea2(nums));
     }
 }
