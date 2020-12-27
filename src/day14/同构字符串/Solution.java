@@ -1,6 +1,10 @@
 package day14.同构字符串;
 
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
+
 /**
  * 给定两个字符串 s 和 t，判断它们是否是同构的。
  *
@@ -19,6 +23,31 @@ package day14.同构字符串;
  */
 class Solution {
     public boolean isIsomorphic(String s, String t) {
-        
+
+        int m = s.length();
+        int n = t.length();
+        if (m != n) {
+            return false;
+        }
+        Map<Character, Character> map = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            if (map.containsKey(s.charAt(i))){
+                if (map.get(s.charAt(i)) != t.charAt(i)){
+                    return false;
+                }
+            }else{
+                if (map.containsValue(t.charAt(i))){
+                    return false;
+                }
+                map.put(s.charAt(i), t.charAt(i));
+            }
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        String s1 = "abba";
+        String s2 = "cddc";
+        System.out.println(new Solution().isIsomorphic(s1, s2));
     }
 }
