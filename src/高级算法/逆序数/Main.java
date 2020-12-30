@@ -19,25 +19,15 @@ public class Main {
 
     public int reversePairs(int[] nums) {
         int len = nums.length;
-
-        if (len < 2) {
-            return 0;
-        }
-
+        if (len < 2) { return 0; }
         int[] copy = new int[len];
-        for (int i = 0; i < len; i++) {
-            copy[i] = nums[i];
-        }
-
+        System.arraycopy(nums, 0, copy, 0, len);
         int[] temp = new int[len];
         return reversePairs(copy, 0, len - 1, temp);
     }
 
     private int reversePairs(int[] nums, int left, int right, int[] temp) {
-        if (left == right) {
-            return 0;
-        }
-
+        if (left == right) { return 0; }
         int mid = left + (right - left) / 2;
         int leftPairs = reversePairs(nums, left, mid, temp);
         int rightPairs = reversePairs(nums, mid + 1, right, temp);
@@ -51,13 +41,12 @@ public class Main {
     }
 
     private int mergeAndCount(int[] nums, int left, int mid, int right, int[] temp) {
-        for (int i = left; i <= right; i++) {
-            temp[i] = nums[i];
+        if (right + 1 - left >= 0) {
+            System.arraycopy(nums, left, temp, left, right + 1 - left);
         }
 
         int i = left;
         int j = mid + 1;
-
         int count = 0;
         for (int k = left; k <= right; k++) {
 
