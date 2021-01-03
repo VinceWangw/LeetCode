@@ -31,41 +31,41 @@ class Solution {
         Deque<String> stack = new ArrayDeque<>();
         for (int i = 0; i < s.length(); ) {
 
-            if (Character.isDigit(s.charAt(i))){
+            if (Character.isDigit(s.charAt(i))) {
                 int num = 0;
-                while (i < s.length() && Character.isDigit(s.charAt(i))){
+                while (i < s.length() && Character.isDigit(s.charAt(i))) {
                     num = num * 10 + (s.charAt(i) - '0');
-                    i ++;
+                    i++;
                 }
                 stack.push(String.valueOf(num));
-            }else if (s.charAt(i) == '+'){
+            } else if (s.charAt(i) == '+') {
                 stack.push("+");
-                i ++;
-            }else if (s.charAt(i) == '-'){
+                i++;
+            } else if (s.charAt(i) == '-') {
                 stack.push("+");
-                i ++;
+                i++;
                 int num = 0;
-                while (i < s.length() && Character.isDigit(s.charAt(i))){
+                while (i < s.length() && Character.isDigit(s.charAt(i))) {
                     num = num * 10 + (s.charAt(i) - '0');
-                    i ++;
+                    i++;
                 }
                 stack.push(Integer.toString(-num));
-            }else if (s.charAt(i) == '*'){
+            } else if (s.charAt(i) == '*') {
                 int a = Integer.parseInt(stack.pop());
-                i ++;
+                i++;
                 int num = 0;
-                while (i < s.length() && Character.isDigit(s.charAt(i))){
+                while (i < s.length() && Character.isDigit(s.charAt(i))) {
                     num = num * 10 + (s.charAt(i) - '0');
-                    i ++;
+                    i++;
                 }
                 stack.push(String.valueOf(a * num));
-            }else if (s.charAt(i) == '/'){
+            } else if (s.charAt(i) == '/') {
                 int a = Integer.parseInt(stack.pop());
-                i ++;
+                i++;
                 int num = 0;
-                while (i < s.length() && Character.isDigit(s.charAt(i))){
+                while (i < s.length() && Character.isDigit(s.charAt(i))) {
                     num = num * 10 + (s.charAt(i) - '0');
-                    i ++;
+                    i++;
                 }
                 if (num == 0) {
                     throw new IllegalArgumentException("除数不能为0");
@@ -80,23 +80,64 @@ class Solution {
             char c = stack.poll().charAt(0);
             int b = Integer.parseInt(stack.pop());
             if (c == '+') {
-                stack.push(String.valueOf(a+b));
+                stack.push(String.valueOf(a + b));
             }
         }
         return Integer.parseInt(stack.pop());
     }
 
+    public int calculate2(String s) {
 
+        Deque<Integer> stack = new ArrayDeque<>();
+        s = s.replace(" ", "");
+        int n = s.length();
+        int num = 0;
+        char sign = '+';
+
+        for (int i = 0; i < n; ++i) {
+            char c = s.charAt(i);
+            if (c >= '0') {
+                num = num * 10 - '0' + c;
+            }
+            if (c < '0' || i == n-1){
+                if (sign == '+') {
+                    stack.push(num);
+                } else if (sign == '-') {
+                    stack.push(-num);
+                } else if (sign == '*' || sign == '/') {
+                    int tmp = sign == '*' ? stack.pop() * num : stack.pop() / num;
+                    stack.push(tmp);
+                }
+                sign = c;
+                num = 0;
+            }
+        }
+
+        int res = 0;
+        while (!stack.isEmpty()) {
+            res += stack.pop();
+        }
+        return res;
+    }
 
 
     public static void main(String[] args) {
-        System.out.println(new Solution().calculate("1-1+1"));
-        System.out.println(new Solution().calculate("3+5 / 2"));
-        System.out.println(new Solution().calculate("3 + 6"));
-        System.out.println(new Solution().calculate("5/2"));
-        System.out.println(new Solution().calculate("3+ 5/2* 2-2"));
-        System.out.println(new Solution().calculate("2-1"));
-        System.out.println(new Solution().calculate("42"));
-        System.out.println(new Solution().calculate("1*2-3/4+5*6-7*8+9/10"));
+//        System.out.println(new Solution().calculate("1-1+1"));
+//        System.out.println(new Solution().calculate("3+5 / 2"));
+//        System.out.println(new Solution().calculate("3 + 6"));
+//        System.out.println(new Solution().calculate("5/2"));
+//        System.out.println(new Solution().calculate("3+ 5/2* 2-2"));
+//        System.out.println(new Solution().calculate("2-1"));
+//        System.out.println(new Solution().calculate("42"));
+//        System.out.println(new Solution().calculate("1*2-3/4+5*6-7*8+9/10"));
+
+//        System.out.println(new Solution().calculate2("1-1+1"));
+//        System.out.println(new Solution().calculate2("3+5 / 2"));
+//        System.out.println(new Solution().calculate2("3 + 6"));
+//        System.out.println(new Solution().calculate2("5/2"));
+        System.out.println(new Solution().calculate2("3+ 5/2* 2-2"));
+        System.out.println(new Solution().calculate2("2-1"));
+        System.out.println(new Solution().calculate2("42"));
+        System.out.println(new Solution().calculate2("1*2-3/4+5*6-7*8+9/10"));
     }
 }
