@@ -29,21 +29,6 @@ class MedianFinder2 {
     }
     
     public double findMedian() {
-        if (size % 2 == 0){
-            return ((double) nums[(size/2) - 1] + (double)nums[size/2])/2;
-        }else {
-            return nums[(size /2 )];
-        }
-    }
-
-    private void reSize(){
-        int newCapacity = (int)(capacity * 1.5);
-        int[] newNums = new int[newCapacity];
-        for (int i = 0; i < capacity; i ++){
-            newNums[i] = nums[i];
-        }
-        nums = newNums;
-        capacity = newCapacity;
 
     }
 
