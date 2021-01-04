@@ -51,7 +51,6 @@ class Solution2 {
                     int notBreakCount = dp[i][j - mid];
 
                     if (breakCount > notBreakCount){
-                        // 排除法（减治思想)
                         // 严格大于的时候一定不是解，此时 mid 一定不是解
                         // 下一轮搜索区间是 [left, mid - 1]
                         right = mid - 1;
