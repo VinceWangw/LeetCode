@@ -1,8 +1,6 @@
 package day22.最长回文子串;
 
-/**
- * 类名: Solution1 描述: TODO 姓名: 悟天 日期: 2021-01-04 13:12
- **/
+
 public class Solution1 {
 
     // dp[i][j] = (s[i] == s[j]) and (j - i < 3 or dp[i + 1][j - 1])
