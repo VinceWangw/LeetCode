@@ -18,8 +18,8 @@ class Solution1 {
     }
 
     private int findWays(int[] nums, int end, int s) {
-        if (end == 0){
-            return nums[0] == s || nums[0] == - s ? 1 : 0;
+        if (end < 0){
+            return s == 0 ? 1 : 0;
         }
 
         return findWays(nums, end - 1, s - nums[end]) +
