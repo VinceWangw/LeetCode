@@ -100,7 +100,6 @@ class Solution {
     }
 
     public static void main(String[] args) {
-        List<List<Integer>> lists = new ArrayList<>();
-        System.out.println(new Solution().smallestStringWithSwaps("", new ArrayList<>()));
+       
     }
 }
