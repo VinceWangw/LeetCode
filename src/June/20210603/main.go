@@ -27,6 +27,5 @@ func findMaxLength(nums []int) int {
 			mp[k] = i
 		}
 	}
-
 	return res
 }
